@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Filmholic</title>
+</head>
+<body>
+    <div class="wrapper">
+        <nav>
+          <input type="checkbox" id="show-search">
+          <input type="checkbox" id="show-menu">
+          <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
+          <div class="content">
+          <div class="logo"><a href="#">Filmholic</a></div>
+            <ul class="links">
+              <li><a href="#">Home</a></li>
+              <li id= genre><a href="#">Genre</a></li>
+              <li><a href="#">Country</a></li>
+              <li><a href="#">Watchlist</a></li>
+              <li><a href="#">Rec</a></li>
+            </ul>
+          </div>
+          <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
+          <form id="form">
+            <input type="text" placeholder="Search" id="search" class="search">
+        </form>
+        </nav>
+      </div>
+      <header id=header>
+        <div id="tags">
+            <div class="tag"></div>
+        </div>
+      </header>
+    <h1 id="latestrelease"></h1>
+    <main id="main">
+    </main>
+    <script src="./script.js"></script>
+</body>
+</html>
