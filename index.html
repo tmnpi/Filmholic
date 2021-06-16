@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,41 +8,56 @@
     <link rel="stylesheet" href="./style.css">
     <title>Filmholic</title>
 </head>
+
 <body>
-  <script src="./fbsdk.js"></script>
-  <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=813133469608636&autoLogAppEvents=1" nonce="fXw3QiPc"></script>
+    <script src="./fbsdk.js"></script>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=813133469608636&autoLogAppEvents=1" nonce="fXw3QiPc"></script>
     <div class="wrapper">
         <nav>
-          <input type="checkbox" id="show-search">
-          <input type="checkbox" id="show-menu">
-          <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
-          <div class="content">
-          <div class="logo"><a href="#">Filmholic</a></div>
-            <ul class="links">
-              <li><a href="#">Home</a></li>
-              <li id= genre><a href="#">Genre</a></li>
-              <li><a href="#">Country</a></li>
-              <li><a href="#">Watchlist</a></li>
-              <li><a href="#">Rec</a></li>
-            </ul>
-          </div>
-          <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
-          <form id="form">
-            <input type="text" placeholder="Search" id="search" class="search">
-        </form>
-        <div class="fb-login-button" data-width="40" data-size="large" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="true" data-use-continue-as="false"></div>
+            <input type="checkbox" id="show-search">
+            <input type="checkbox" id="show-menu">
+            <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
+            <div class="content">
+                <div class="logo"><a href="#">Filmholic</a></div>
+                <ul class="links">
+                    <li><a href="#">Home</a></li>
+                    <li id=g enre><a href="#">Genre</a></li>
+                    <li><a href="#">Country</a></li>
+                    <li><a href="#">Watchlist</a></li>
+                    <li><a href="#">Rec</a></li>
+                </ul>
+            </div>
+            <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
+            <form id="form">
+                <input type="text" placeholder="Search" id="search" class="search">
+            </form>
+            <div class="fb-login-button" data-width="40" data-size="large" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="true" data-use-continue-as="false"></div>
+            <img src="images/moon.png" id="icon">
         </nav>
-      </div>
-      <header id=header>
+    </div>
+    <header id=header>
         <div id="tags">
             <div class="tag"></div>
         </div>
-      </header>
+    </header>
     <h1 id="latestrelease"></h1>
     <main id="main">
     </main>
     <script src="./script.js"></script>
-    
+    <script>
+        {
+            var icon = document.getElementById("icon");
+            icon.onclick = function() {
+                document.body.classList.toggle('dark-theme')
+                if (document.body.classList.contains('dark-theme')) {
+                    icon.src = "images/sun.png"
+                } else {
+                    icon.src = "images/moon.png"
+                }
+            }
+        }
+    </script>
 </body>
+
 </html>
