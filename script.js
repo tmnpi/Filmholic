@@ -11,7 +11,8 @@ const genre = document.getElementById('genre');
 const tagEl = document.getElementById('tags');
 const watched =document.getElementById("watched");
 const GENRE_URL = BASE_URL+"/discover/movie?sort_by=popularity.desc&"+ API_KEY+"&with_genres=";
-const user_id=document.getElementById("user_id");
+const user_id_html=document.getElementById("user_id");
+const user_id = user_id_html.innerText;
 const genrelist =[
        {
           "id":28,
@@ -202,16 +203,17 @@ function showMovies(data){
         movieEl.addEventListener("click", function (){
             if (confirm("Add to Watched List?")) {
                 //console.log(title);
-                let user= userlist.find(user => user.user_ID==user_id);
-                if (user!=null){
+                let currentuser= userlist.find(user => user.user_ID===user_id);
+                if (currentuser!=null){
                     userlist.forEach(user =>{
-                        if (user.user_ID==user_id.innerHTML){
+                        if (user.user_ID==user_id){
                             user.watched_id.push(id);
                         }
+                        //console.log(user_id);
                     })
                 }else{
                     let new_user = {
-                        "user_ID": user_id.innerHTML,
+                        "user_ID": user_id,
                         "watched_id":[id],
                         "watch_later_id":[]
                     }
@@ -222,15 +224,15 @@ function showMovies(data){
               } else {
                 if(confirm("Add to WatchLater List?")){
                     let user= userlist.find(user => user.user_ID==user_id);
-                if (user!=null){
+                if (user.user_ID!==""){
                     userlist.forEach(user =>{
-                        if (user.user_ID==user_id.innerHTML){
+                        if (user.user_ID==user_id){
                             user.watch_later_id.push(id);
                         }
                     })
                 }else{
                     let new_user = {
-                        "user_ID": user_id.innerHTML,
+                        "user_ID": user_id,
                         "watched_id":[],
                         "watch_later_id":[id]
                     }
@@ -247,6 +249,7 @@ function showMovies(data){
         
     });
 }
+console.log(user_id);
 function getColor(vote){
     if(vote>=8){
         return 'green'
