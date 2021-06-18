@@ -17,9 +17,7 @@
       version    : 'v11.0'           // Use this Graph API version for this call.
     });
           
-    FB.logout(function(response) {
-  // user is now logged out
-});
+          
     FB.AppEvents.logPageView();
           FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
               FB.api('/me', {fields: 'id'}, function(response) {
