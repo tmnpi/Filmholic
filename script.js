@@ -249,7 +249,7 @@ function showMovies(data){
         
     });
 }
-console.log(user_id);
+console.log(user_id_html);
 function getColor(vote){
     if(vote>=8){
         return 'green'
