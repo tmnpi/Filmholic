@@ -17,7 +17,7 @@ function extractContent(s) {
   span.innerHTML = s;
   return span.textContent || span.innerText;
 };
-const user_id = extractContent(user_id.innerHTML);
+const user_id = extractContent(user_id_html.innerHTML);
 console.log(user_id);
 const genrelist =[
        {
