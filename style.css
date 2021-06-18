@@ -256,7 +256,7 @@ h1{
     align-items: center;
     margin: 10px auto;
 }
-.tags .tag{
+.tag{
     color: white;
     padding: 10px 20px;
     background-color:rgb(71, 115, 209);
@@ -265,7 +265,7 @@ h1{
     display: inline-block;
     cursor: pointer;
 }
-.tags .tag .highlight{
+.tag .highlight{
     background-color: rgb(118, 135, 231);
 }
 body{

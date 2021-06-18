@@ -9,6 +9,7 @@ const search = document.getElementById('search');
 const latestrelease = document.getElementById('latestrelease');
 const genre = document.getElementById('genre');
 const tagEl = document.getElementById('tags');
+const watched =document.getElementById("watched");
 const GENRE_URL = BASE_URL+"/discover/movie?sort_by=popularity.desc&"+ API_KEY+"&with_genres=";
 const genrelist =[
        {
@@ -89,6 +90,13 @@ const genrelist =[
        }
     ]
 var selectedGenre=[]
+var userlist =[
+    {
+        "user_ID": "",
+        "watched_id":0,
+        "watch_later_id":0
+    }
+]
 homePage();
 function homePage(){
     latestrelease.innerHTML='Latest releases:';
@@ -160,7 +168,7 @@ genre.addEventListener('click', (e)=>{
 })
 function getMovies(url){
     fetch(url).then(res => res.json()).then(data =>{
-        console.log(data.results);
+        //console.log(data.results);
         if(data.results.length!==0){
             showMovies(data.results);
         }else{
@@ -178,18 +186,31 @@ function showMovies(data){
         movieEl.innerHTML=`
         <div class="poster">
             <img  src="${poster_path? IMG_URL + poster_path : "http://via.placeholder.com/1080x1580"}" alt="${title}">
-            <button class="watched">Watched</button>
-            <button class="watchlater">Later</button>
+            <!--
+            <div class="watched">Watched</div>
+            <div class="watchlater">Later</div> -->
         </div>
             <div class="movie-info">
-                <h3>${title}</h3>
+                <h3 id="title ">${title}</h3>
                 <span class="${getColor(vote_average)}">${vote_average}</span>
             </div>
             <div class="overview">
                 ${overview}
             </div>
         `
+        movieEl.addEventListener("click", function (){
+            if (confirm("Add to Watched List?")) {
+                console.log(title);
+              } else {
+                if(confirm("Add to WatchLater List?")){
+                    console.log(title + "Watch Later");
+                } else {
+                    console.log("Nothing");
+                }
+              } 
+        })
         main.appendChild(movieEl);
+        
     });
 }
 function getColor(vote){
