@@ -11,13 +11,7 @@ const genre = document.getElementById('genre');
 const tagEl = document.getElementById('tags');
 const watched =document.getElementById("watched");
 const GENRE_URL = BASE_URL+"/discover/movie?sort_by=popularity.desc&"+ API_KEY+"&with_genres=";
-const user_id_html=document.getElementById("user_id");
-function extractContent(s) {
-  var span = document.createElement('span');
-  span.innerHTML = s;
-  return span.textContent || span.innerText;
-};
-const user_id = extractContent(user_id_html.innerHTML);
+const user_id=document.getElementById("user_id");
 console.log(user_id);
 const genrelist =[
        {
