@@ -17,6 +17,8 @@
       version    : 'v11.0'           // Use this Graph API version for this call.
     });
     FB.AppEvents.logPageView();  
+           FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
+    });
     function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
