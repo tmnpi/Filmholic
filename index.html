@@ -18,10 +18,11 @@
     });
           
           
-    //FB.AppEvents.logPageView();
+          FB.AppEvents.logPageView();
           FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
               FB.api('/me', {fields: 'id'}, function(response) {
               console.log(response.id);
+                  document.getElementById("user_id").innerHTML=(response.id);
     });
     
 });
@@ -37,7 +38,7 @@
       
   
   </script>
-
+    <var id="user_id"></var>
     
     
   <div id="fb-root"></div>
