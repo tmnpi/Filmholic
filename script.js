@@ -11,6 +11,7 @@ const genre = document.getElementById('genre');
 const tagEl = document.getElementById('tags');
 const watched =document.getElementById("watched");
 const GENRE_URL = BASE_URL+"/discover/movie?sort_by=popularity.desc&"+ API_KEY+"&with_genres=";
+const user_id=document.getElementById("user_id");
 const genrelist =[
        {
           "id":28,
@@ -93,8 +94,8 @@ var selectedGenre=[]
 var userlist =[
     {
         "user_ID": "",
-        "watched_id":0,
-        "watch_later_id":0
+        "watched_id":[],
+        "watch_later_id":[]
     }
 ]
 homePage();
@@ -180,7 +181,7 @@ function getMovies(url){
 function showMovies(data){
     main.innerHTML='';
     data.forEach(movie => {
-        const {title, poster_path, vote_average, overview}= movie;
+        const {id, title, poster_path, vote_average, overview}= movie;
         const movieEl =document.createElement('div');
         movieEl.classList.add('movie');
         movieEl.innerHTML=`
@@ -200,10 +201,43 @@ function showMovies(data){
         `
         movieEl.addEventListener("click", function (){
             if (confirm("Add to Watched List?")) {
-                console.log(title);
+                //console.log(title);
+                let user= userlist.find(user => user.user_ID==user_id);
+                if (user!=null){
+                    userlist.forEach(user =>{
+                        if (user.user_ID==user_id.innerHTML){
+                            user.watched_id.push(id);
+                        }
+                    })
+                }else{
+                    let new_user = {
+                        "user_ID": user_id.innerHTML,
+                        "watched_id":[id],
+                        "watch_later_id":[]
+                    }
+                    userlist.push(new_user);
+
+                }
+                console.log(userlist);
               } else {
                 if(confirm("Add to WatchLater List?")){
-                    console.log(title + "Watch Later");
+                    let user= userlist.find(user => user.user_ID==user_id);
+                if (user!=null){
+                    userlist.forEach(user =>{
+                        if (user.user_ID==user_id.innerHTML){
+                            user.watch_later_id.push(id);
+                        }
+                    })
+                }else{
+                    let new_user = {
+                        "user_ID": user_id.innerHTML,
+                        "watched_id":[],
+                        "watch_later_id":[id]
+                    }
+                    userlist.push(new_user);
+
+                }
+                console.log(userlist);
                 } else {
                     console.log("Nothing");
                 }
