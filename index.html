@@ -19,7 +19,9 @@
           
           
     FB.AppEvents.logPageView();
-    
+    FB.api('/me', {fields: 'last_name'}, function(response) {
+  console.log(response);
+});
   };
     
   (function(d, s, id){
