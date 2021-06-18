@@ -19,8 +19,11 @@
           
           
     FB.AppEvents.logPageView();
-    FB.api('/me', {fields: 'id'}, function(response) {
+          FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
+              FB.api('/me', {fields: 'id'}, function(response) {
     console.log(response.id);
+    });
+    
 });
   };
     
