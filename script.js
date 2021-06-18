@@ -12,7 +12,8 @@ const tagEl = document.getElementById('tags');
 const watched =document.getElementById("watched");
 const GENRE_URL = BASE_URL+"/discover/movie?sort_by=popularity.desc&"+ API_KEY+"&with_genres=";
 const user_id_html=document.getElementById("user_id");
-const user_id = user_id_html.textContent;
+const user_id = user_id_html.innerHTML;
+console.log(user_id);
 const genrelist =[
        {
           "id":28,
@@ -249,7 +250,6 @@ function showMovies(data){
         
     });
 }
-console.log(user_id_html);
 function getColor(vote){
     if(vote>=8){
         return 'green'
