@@ -20,7 +20,7 @@
         FB.getLoginStatus(function(response) {
         statusChangeCallback(response);
         });
-        console.log("response.userID");
+        console.log(response);
   };
 
   (function(d, s, id){
@@ -30,11 +30,6 @@
      js.src = "https://connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
-   function getInfo(){
-     FB.api('/me','GET',{fields:'id'}, function(response){
-       console.log(response.id);
-     })
-   }
   </script>
   <div id="fb-root"></div>
   <script
