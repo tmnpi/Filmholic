@@ -8,26 +8,17 @@
     <title>Filmholic</title>
 </head>
 <body>
-     <script>
-      window.fbAsyncInit = function() {
+  <script>
+    window.fbAsyncInit = function() {
     FB.init({
       appId      : '813133469608636',
-      cookie     : true,                     // Enable cookies to allow the server to access the session.
-      xfbml      : true,                     // Parse social plugins on this webpage.
-      version    : 'v11.0'           // Use this Graph API version for this call.
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v11.0'
     });
-          
-          
-          FB.AppEvents.logPageView();
-          FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
-              FB.api('/me', {fields: 'id'}, function(response) {
-              console.log(response.id);
-                  document.getElementById("user_id").innerHTML=(response.id);
-    });
-    
-});
+    FB.AppEvents.logPageView();   
   };
-    
+
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
      if (d.getElementById(id)) {return;}
@@ -35,11 +26,8 @@
      js.src = "https://connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
-      
-  
+   
   </script>
-    
-    
   <div id="fb-root"></div>
   <script
     async
@@ -79,7 +67,6 @@
         </nav>
       </div>
       <header id=header>
-          <var id="user_id"></var>
       </header>
       <div id="tags">
         <div class="tag"></div>
