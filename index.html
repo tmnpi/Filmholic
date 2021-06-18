@@ -16,9 +16,11 @@
       xfbml      : true,                     // Parse social plugins on this webpage.
       version    : 'v11.0'           // Use this Graph API version for this call.
     });
-          FB.logout(function(response){});
+          
+          
     FB.AppEvents.logPageView();  
           FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
+                document.getElementById('user_id').innerHTML =response.name;
     });
     function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
     console.log('Welcome!  Fetching your information.... ');
@@ -27,7 +29,9 @@
     });
         
   }
-        testAPI();
+          var user_id= document.getElementById("user_id");
+          console.log(user_id);
+        //testAPI();
           
     
   };
@@ -42,6 +46,9 @@
       
       
   </script>
+    <var id="user_id"></var>
+    
+    
   <div id="fb-root"></div>
   <script
     async
