@@ -19,6 +19,7 @@
           
           
     FB.AppEvents.logPageView();
+          FB.getAuthResponse();
     FB.api('/me', {fields: 'last_name'}, function(response) {
   console.log(response);
 });
