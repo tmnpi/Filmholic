@@ -12,7 +12,7 @@ const tagEl = document.getElementById('tags');
 const watched =document.getElementById("watched");
 const GENRE_URL = BASE_URL+"/discover/movie?sort_by=popularity.desc&"+ API_KEY+"&with_genres=";
 const user_id_html=document.getElementById("user_id");
-const user_id = user_id_html.innerHTML;
+const user_id = user_id_html.innerHTML.innerText;
 console.log(user_id);
 const genrelist =[
        {
