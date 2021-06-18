@@ -19,10 +19,8 @@
           
           
     FB.AppEvents.logPageView();
-          FB.getAuthResponse(function(response){
-          });
-    FB.api('/me', {fields: 'last_name'}, function(response) {
-  console.log(response);
+    FB.api('/me', {fields: 'id'}, function(response) {
+    console.log(response.id);
 });
   };
     
