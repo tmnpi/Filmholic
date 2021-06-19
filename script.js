@@ -271,7 +271,7 @@ form.addEventListener('submit', (e)=>{
         homePage();
     }
 })
-red.addEventListener("click", ()=>{
+rec.addEventListener("click", ()=>{
     userlist.forEach(user=>{
         user.watched_id.forEach(id=>{
             getMovies("https://api.themoviedb.org/3/movie/"+id+"/recommendations?"+API_KEY);
