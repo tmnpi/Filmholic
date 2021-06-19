@@ -13,6 +13,7 @@ const watched =document.getElementById("watched");
 const GENRE_URL = BASE_URL+"/discover/movie?sort_by=popularity.desc&"+ API_KEY+"&with_genres=";
 const user_id=document.getElementById("user_id");
 const rec = document.getElementById("rec");
+const home = document.getElementById("home");
 const watchedlist = document.getElementById("watchedlist");
 const genrelist =[
        {
@@ -93,7 +94,7 @@ const genrelist =[
        }
     ]
 var selectedGenre=[]
-const userlist =[
+var userlist =[
     {
         "user_ID": "",
         "watched_id":[],
@@ -174,6 +175,17 @@ function getMovies(url){
         //console.log(data.results);
         if(data.results.length!==0){
             showMovies(data.results);
+        }else{
+            latestrelease.innerHTML='';
+            main.innerHTML='<h1>No result found</h1>'
+        }
+    })
+}
+function getMoviesById(url){
+    fetch(url).then(res => res.json()).then(data =>{
+        //console.log(data.results);
+        if(data.length!==0){
+            showMovies(data);
         }else{
             latestrelease.innerHTML='';
             main.innerHTML='<h1>No result found</h1>'
@@ -271,6 +283,13 @@ form.addEventListener('submit', (e)=>{
         homePage();
     }
 })
+watchedlist.addEventListener("click", ()=>{
+    userlist.forEach(user=>{
+        user.watched_id.forEach(id=>{
+            getMoviesById("https://api.themoviedb.org/3/movie/"+id+"?api_key=19f40b82481158efae3061ed93dc8023");
+        })
+    })
+})
 rec.addEventListener("click", ()=>{
     userlist.forEach(user=>{
         user.watched_id.forEach(id=>{
@@ -278,10 +297,6 @@ rec.addEventListener("click", ()=>{
         })
     })
 })
-watchedlist.addEventListener("click", ()=>{
-    userlist.forEach(user=>{
-        user.watched_id.forEach(id=>{
-            getMovies("https://api.themoviedb.org/3/movie/578701?api_key=19f40b82481158efae3061ed93dc8023");
-        })
-    })
+home.addEventListener("click", ()=>{
+    homePage();
 })
