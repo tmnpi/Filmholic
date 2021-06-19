@@ -13,6 +13,7 @@ const watched =document.getElementById("watched");
 const GENRE_URL = BASE_URL+"/discover/movie?sort_by=popularity.desc&"+ API_KEY+"&with_genres=";
 const user_id=document.getElementById("user_id");
 const rec = document.getElementById("rec");
+const watchedlist = document.getElementById("watchedlist");
 const genrelist =[
        {
           "id":28,
@@ -270,10 +271,17 @@ form.addEventListener('submit', (e)=>{
         homePage();
     }
 })
-rec.addEventListener("click", ()=>{
+watchedlist.addEventListener("click", ()=>{
     userlist.forEach(user=>{
         user.watched_id.forEach(id=>{
             getMovies("https://api.themoviedb.org/3/movie/"+id+"/recommendations?"+API_KEY);
+        })
+    })
+})
+rec.addEventListener("click", ()=>{
+    userlist.forEach(user=>{
+        user.watched_id.forEach(id=>{
+            getMovies("https://api.themoviedb.org/3/movie/"+id+"?"+API_KEY);
         })
     })
 })
