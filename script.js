@@ -271,17 +271,17 @@ form.addEventListener('submit', (e)=>{
         homePage();
     }
 })
-watchedlist.addEventListener("click", ()=>{
+red.addEventListener("click", ()=>{
     userlist.forEach(user=>{
         user.watched_id.forEach(id=>{
             getMovies("https://api.themoviedb.org/3/movie/"+id+"/recommendations?"+API_KEY);
         })
     })
 })
-rec.addEventListener("click", ()=>{
+watchedlist.addEventListener("click", ()=>{
     userlist.forEach(user=>{
         user.watched_id.forEach(id=>{
-            getMovies("https://api.themoviedb.org/3/movie/"+id+"?"+API_KEY);
+            getMovies("https://api.themoviedb.org/3/movie"+id+"?"+API_KEY);
         })
     })
 })
