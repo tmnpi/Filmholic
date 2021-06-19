@@ -281,7 +281,7 @@ rec.addEventListener("click", ()=>{
 watchedlist.addEventListener("click", ()=>{
     userlist.forEach(user=>{
         user.watched_id.forEach(id=>{
-            getMovies("https://api.themoviedb.org/3/movie"+id+"?"+API_KEY);
+            getMovies("https://api.themoviedb.org/3/movie/"+id+"?api_key=19f40b82481158efae3061ed93dc8023");
         })
     })
 })
