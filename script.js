@@ -15,6 +15,7 @@ const user_id=document.getElementById("user_id");
 const rec = document.getElementById("rec");
 const home = document.getElementById("home");
 const watchedlist = document.getElementById("watchedlist");
+const watchlater = document.getElementById("watchlater");
 const genrelist =[
        {
           "id":28,
@@ -185,12 +186,81 @@ function getMoviesById(url){
     fetch(url).then(res => res.json()).then(data =>{
         //console.log(data.results);
         if(data.length!==0){
-            showMovies(data);
+            showMoviesById(data);
         }else{
             latestrelease.innerHTML='';
             main.innerHTML='<h1>No result found</h1>'
         }
     })
+}
+function showMoviesById(movie){
+    //main.innerHTML='';
+   
+        const {id, title, poster_path, vote_average, overview}= movie;
+        const movieEl =document.createElement('div');
+        movieEl.classList.add('movie');
+        movieEl.innerHTML=`
+        <div class="poster">
+            <img  src="${poster_path? IMG_URL + poster_path : "http://via.placeholder.com/1080x1580"}" alt="${title}">
+            <!--
+            <div class="watched">Watched</div>
+            <div class="watchlater">Later</div> -->
+        </div>
+            <div class="movie-info">
+                <h3 id="title ">${title}</h3>
+                <span class="${getColor(vote_average)}">${vote_average}</span>
+            </div>
+            <div class="overview">
+                ${overview}
+            </div>
+        `
+        movieEl.addEventListener("click", function (){
+            if (confirm("Add to Watched List?")) {
+                //console.log(title);
+                let currentuser= userlist.find(user => user.user_ID===user_id.innerHTML);
+                if (currentuser!=null){
+                    userlist.forEach(user =>{
+                        if (user.user_ID==user_id.innerHTML){
+                            user.watched_id.push(id);
+                        }
+                        //console.log(user_id.innerHTML);
+                    })
+                }else{
+                    let new_user = {
+                        "user_ID": user_id.innerHTML,
+                        "watched_id":[id],
+                        "watch_later_id":[]
+                    }
+                    userlist.push(new_user);
+
+                }
+                console.log(userlist);
+              } else {
+                if(confirm("Add to WatchLater List?")){
+                    let user= userlist.find(user => user.user_ID==user_id);
+                if (user!==null){
+                    userlist.forEach(user =>{
+                        if (user.user_ID==user_id.innerHTML){
+                            user.watch_later_id.push(id);
+                        }
+                    })
+                }else{
+                    let new_user = {
+                        "user_ID": user_id.innerHTML,
+                        "watched_id":[],
+                        "watch_later_id":[id]
+                    }
+                    userlist.push(new_user);
+
+                }
+                console.log(userlist);
+                } else {
+                    console.log("Nothing");
+                }
+              } 
+        })
+        main.appendChild(movieEl);
+        
 }
 function showMovies(data){
     main.innerHTML='';
@@ -284,6 +354,7 @@ form.addEventListener('submit', (e)=>{
     }
 })
 watchedlist.addEventListener("click", ()=>{
+    main.innerHTML='';
     userlist.forEach(user=>{
         user.watched_id.forEach(id=>{
             getMoviesById("https://api.themoviedb.org/3/movie/"+id+"?api_key=19f40b82481158efae3061ed93dc8023");
@@ -291,6 +362,7 @@ watchedlist.addEventListener("click", ()=>{
     })
 })
 rec.addEventListener("click", ()=>{
+    
     userlist.forEach(user=>{
         user.watched_id.forEach(id=>{
             getMovies("https://api.themoviedb.org/3/movie/"+id+"/recommendations?"+API_KEY);
@@ -299,4 +371,12 @@ rec.addEventListener("click", ()=>{
 })
 home.addEventListener("click", ()=>{
     homePage();
+})
+watchlater.addEventListener("click", ()=>{
+    main.innerHTML='';
+    userlist.forEach(user=>{
+        user.watch_later_id.forEach(id=>{
+            getMoviesById("https://api.themoviedb.org/3/movie/"+id+"?api_key=19f40b82481158efae3061ed93dc8023");
+        })
+    })
 })
